@@ -1,0 +1,20 @@
+{:paths ["src/main/clj" "resources" "classes"]
+ :deps {org.clojure/clojure {:mvn/version "1.10.1"}
+        com.google.cloud.functions/functions-framework-api {:mvn/version "1.0.1"}}
+ :aliases
+ {:test {:extra-paths ["test"]
+         :extra-deps {org.clojure/test.check {:mvn/version "1.0.0"}}}
+  :runner {:extra-deps {com.cognitect/test-runner
+                        {:git/url "https://github.com/cognitect-labs/test-runner"
+                         :sha "f7ef16dc3b8332b0d77bc0274578ad5270fbfedd"}}
+           :main-opts ["-m" "cognitect.test-runner"
+                       "-d" "test"]}
+  :aot {:extra-paths ["classes"]
+        :main-opts ["-e" "(compile,'atomist.Main),(compile,'atomist.skill)"]}
+  :uberjar {:extra-deps {pack/pack.alpha {:git/url "https://github.com/juxt/pack.alpha"
+                                          :sha "5c5dae9ae4b75941485a17872aa59e040a500aa4"}}
+            :main-opts ["-m" "mach.pack.alpha.aws-lambda" "-C:aot" "skill.jar"]}
+  :useuberjar {:extra-deps {atomist.skill/skill {:local/root "skill.jar"}}}
+  :depstar {:extra-deps {seancorfield/depstar {:mvn/version "1.0.94"}}
+            :main-opts ["-m" "hf.depstar.uberjar" "target/service.jar"]}
+  :java-function-invoker {:extra-deps {com.google.cloud.functions.invoker/java-function-invoker {:mvn/version "1.0.0-alpha-2-rc5"}}}}}
