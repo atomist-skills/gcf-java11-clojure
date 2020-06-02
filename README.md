@@ -133,9 +133,13 @@ Caused by: java.io.FileNotFoundException: Could not locate clojure/core__init.cl
 
 ```
 
+It would be cool to have no `.java` files in this repo.  My first look at [the code for the invoker][github-functions-framework-java] also
+made me think that the generated class should have worked so I need to look a little deeper.
+
 [pack.alpha]: https://github.com/juxt/pack.alpha
 [first.java]: https://cloud.google.com/functions/docs/first-java
 [depstar]: https://github.com/seancorfield/depstar
 [functions-framework-api]: https://javadoc.io/doc/com.google.cloud.functions/functions-framework-api/latest/index.html
 [api]: https://mvnrepository.com/artifact/com.google.cloud.functions/functions-framework-api/1.0.1
 [java-11-for-cloud-functions]: https://developers.googleblog.com/2020/05/java-11-for-cloud-functions.html
+[github-functions-framework-java]: https://github.com/GoogleCloudPlatform/functions-framework-java
