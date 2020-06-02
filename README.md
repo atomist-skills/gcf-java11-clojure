@@ -26,8 +26,8 @@ clj -Adepstar
 
 ## Testing the Uberjar
 
-Google has local harness you can use at `{com.google.cloud.functions.invoker/java-function-invoker {:mvn/version "1.0.0-alpha-2-rc5"}}`.
-You can run the uberjar above in the repl:
+Google has a local harness you can use at `{com.google.cloud.functions.invoker/java-function-invoker {:mvn/version "1.0.0-alpha-2-rc5"}}`.
+Running this new uberjar in a repl, will give you a function invoker on port `8080`:
 
 ```
 16:58 $ clj -A:java-function-invoker
@@ -47,7 +47,7 @@ Jun 01, 2020 5:17:08 PM com.google.cloud.functions.invoker.runner.Invoker logSer
 INFO: URL: http://localhost:8080/
 ```
 
-and now that this is running, just `curl htp://localhost:8080` to run the function locally.
+Now that this is running, you can test this locally with `curl htp://localhost:8080`.
 
 ## Deploying the Uberjar
 
@@ -55,7 +55,8 @@ Deploy this to google using `glcoud`.  For a function named `clojure-function`,
 the command line should be:
 
 ```shell script
-gcloud functions deploy clojure-function \
+gcloud functions deploy \ 
+  clojure-function \
   --entry-point functions.Main \
   --runtime java11 \
   --trigger-http \
@@ -64,8 +65,9 @@ gcloud functions deploy clojure-function \
 ```
 
 The most surprising thing here is the `--source ./target` parameter.  This directory has a single 
-jar (`./target/service.jar`), which gets uploaded as part of the function archive.  Somehow, the function runtime knows 
-how to construct a classpath that has this jar.  I didn't see any documentation on the actual contract here (most of 
+jar (`./target/service.jar`), which gets uploaded as part of the function archive.  
+Somehow, the google function runtime knows 
+how to construct a classpath with this jar.  I didn't see any documentation on the actual contract here (most of 
 the documentation focuses on setting up a `pom.xml` and deploying .java src files directly).  Incidentally, it's also 
 straight forward to leave the `.clj` files uncompiled in the archive.  That certainly works and is 
 a lot easier.  However, the purpose of this was to experiment with the `aot` route.  I don't want any `clj` compilation
@@ -89,8 +91,8 @@ You can curl that url and use stack driver to see the logs.
 Right?  Seems straight forward.  The functions framework should be able to reference a `Class` 
 that is generated from `.clj` source.  I ran 
 into a ClassLoader issue when trying this.  I'm wondering whether the context ClassLoader 
-that loads `com.google.cloud.functions.HttpFunction`, is not what I was expected.  If my entrypoint
-comes from this `clj` code:
+that loads `com.google.cloud.functions.HttpFunction`, is not what I was expected.  I tried to
+create an entrypoint using this `clj` code:
 
 ```clojure
 (ns atomist.Main
@@ -106,8 +108,8 @@ comes from this `clj` code:
   (skill/-main []))
 ```
 
-then I end up seeing the Exception below when I try to run the function.  Apparently, the context 
-ClassLoader being used by `internPrivate` can no longer see `clojure.core`.
+When I try to run the function, I see the `Exception` below.  Apparently, the context 
+ClassLoader being used by `internPrivate` can no longer see `clojure.core`?
 
 ```
 Exception in thread "main" java.lang.ExceptionInInitializerError
