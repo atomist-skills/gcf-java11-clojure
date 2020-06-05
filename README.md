@@ -138,6 +138,8 @@ made me think that the generated class should have worked so I need to look a li
 
 ## Clojure Java Skill
 
+* deploys quite fast, since it's just a jar
+
 [pack.alpha]: https://github.com/juxt/pack.alpha
 [first.java]: https://cloud.google.com/functions/docs/first-java
 [depstar]: https://github.com/seancorfield/depstar
