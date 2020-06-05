@@ -14,7 +14,7 @@
    :minRequired 0,
    :maxAllowed 1}],
  :displayName "gcf Java Clojure Skill",
- :name "gcf-java11-clojure",
+ :name "gcf-java-clojure",
  :author "Atomist",
  :dispatch "single",
  :commands
