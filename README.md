@@ -136,6 +136,8 @@ Caused by: java.io.FileNotFoundException: Could not locate clojure/core__init.cl
 It would be cool to have no `.java` files in this repo.  My first look at [the code for the invoker][github-functions-framework-java] also
 made me think that the generated class should have worked so I need to look a little deeper.
 
+## Clojure Java Skill
+
 [pack.alpha]: https://github.com/juxt/pack.alpha
 [first.java]: https://cloud.google.com/functions/docs/first-java
 [depstar]: https://github.com/seancorfield/depstar
