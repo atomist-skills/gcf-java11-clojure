@@ -17,4 +17,8 @@
   :useuberjar {:extra-deps {atomist.skill/skill {:local/root "skill.jar"}}}
   :depstar {:extra-deps {seancorfield/depstar {:mvn/version "1.0.94"}}
             :main-opts ["-m" "hf.depstar.uberjar" "target/service.jar"]}
-  :java-function-invoker {:extra-deps {com.google.cloud.functions.invoker/java-function-invoker {:mvn/version "1.0.0-alpha-2-rc5"}}}}}
+  :java-function-invoker {:extra-deps {com.google.cloud.functions.invoker/java-function-invoker {:mvn/version "1.0.0-alpha-2-rc5"}}}
+  :bundler {:extra-deps {com.atomist/skill-bundler {:mvn/version "0.1.2"}}
+            :main-opts ["-m" "atomist.bundler"]}
+  }
+}

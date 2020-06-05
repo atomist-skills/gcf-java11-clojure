@@ -1,0 +1,40 @@
+{:description
+ "Demonstrate java11 skill",
+ :category [],
+ :license "Apache-2.0",
+ :resourceProviders
+ [{:name "github",
+   :description "GitHub",
+   :typeName "GitHubAppResourceProvider",
+   :minRequired 1,
+   :maxAllowed 1}
+  {:name "slack",
+   :description "Slack",
+   :typeName "SlackResourceProvider",
+   :minRequired 0,
+   :maxAllowed 1}],
+ :displayName "gcf Java Clojure Skill",
+ :name "gcf-java11-clojure",
+ :author "Atomist",
+ :dispatch "single",
+ :commands
+ [{:name "clj",
+   :description "say hi",
+   :pattern "^say hi$"}]
+ :iconUrl "https://raw.githubusercontent.com/cljs/logo/master/cljs.png",
+ :homepageUrl "https://github.com/atomist-skills/gcf-java11-clojure",
+ :parameters
+ [{:repoFilter
+   {:description
+    "The set of Repositories for this String Replace rule.",
+    :displayName "Repository Scope",
+    :name "scope",
+    :required false}}],
+ :namespace "atomist",
+ :artifacts
+ [{:gcf
+   {:name "package-clj-skill",
+    :entryPoint "functions.Main",
+    :memory 512, 
+    :runtime "java11", 
+    :timeout 60}}]}

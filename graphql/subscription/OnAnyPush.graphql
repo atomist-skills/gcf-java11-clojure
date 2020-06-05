@@ -1,0 +1,54 @@
+subscription OnAnyPush {
+    Push {
+        id
+        branch
+        repo {
+            channels {
+                channelId
+                name
+            }
+            branches {
+                id
+            }
+            defaultBranch
+            id
+            name
+            owner
+            org {
+                id
+                owner
+                ownerType
+                scmProvider {
+                    credential {
+                        scopes
+                        id
+                        secret
+                        owner {
+                            name
+                            login
+                        }
+                    }
+                    id
+                    name
+                    providerId
+                    providerType
+                    authProviderId
+                }
+                team {
+                    chatTeams {
+                        name
+                        id
+                    }
+                }
+            }
+        }
+        after {
+            id
+            sha
+            message
+            author {
+                login
+            }
+        }
+    }
+}

@@ -1,0 +1,5 @@
+apiVersion: 1
+package:
+  type: atomist/node-skill
+  command: compile.sh && clj -A:bundler
+  tag: false
