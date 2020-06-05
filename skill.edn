@@ -32,9 +32,9 @@
     :required false}}],
  :namespace "atomist",
  :artifacts
- [{:gcf
+ {:gcf [
    {:name "package-clj-skill",
     :entryPoint "functions.Main",
     :memory 512, 
     :runtime "java11", 
-    :timeout 60}}]}
+    :timeout 60}]}}
