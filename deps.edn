@@ -20,5 +20,22 @@
   :java-function-invoker {:extra-deps {com.google.cloud.functions.invoker/java-function-invoker {:mvn/version "1.0.0-alpha-2-rc5"}}}
   :bundler {:extra-deps {com.atomist/skill-bundler {:mvn/version "0.1.2"}}
             :main-opts ["-m" "atomist.bundler"]}
+  :release {:extra-deps
+            {metav
+             {:git/url "https://github.com/slimslenderslacks/metav.git",
+              :sha "f2d683806d4cbada7a7ad824b033a46f9e242e5a"}},
+            :main-opts
+            ["-m"
+             "metav.release"
+             "--spit"
+             "--output-dir"
+             "src/main/clj"
+             "--namespace"
+             "atomist.skill-meta"
+             "--formats"
+             "clj"
+             "--without-sign"
+             "--prefix"
+             ":none"]}
   }
 }
