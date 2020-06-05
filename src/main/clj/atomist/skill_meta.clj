@@ -3,6 +3,6 @@
 
 (def module-name "gcf-java11-clojure")
 (def path ".")
-(def version "0.1.3")
-(def tag "0.1.3")
-(def generated-at "2020-06-05T20:28:11Z")
+(def version "0.1.4")
+(def tag "0.1.4")
+(def generated-at "2020-06-05T20:34:56Z")
